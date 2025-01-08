@@ -1,12 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        Account acc1 = new Account("12345", 1000.00);
-        Account acc2 = new Account("67890", 500.00);
+        Bank bank = new Bank("Mansur Bank");
+
+        Account acc1 = new SavingsAccount("12345", 1000.00);
+        Account acc2 = new CheckingAccount("67890", 500.00);
 
         Customer cust1 = new Customer("Gamora", "C001");
         Customer cust2 = new Customer("Ali", "C002");
 
-        Bank bank = new Bank("Mansur Bank");
+        // Add accounts to the bank
+        bank.addAccount(acc1);
+        bank.addAccount(acc2);
 
         // Display details
         acc1.display();
@@ -21,5 +25,17 @@ public class Main {
         } else {
             System.out.println(acc2.getAccountNumber() + " has a higher balance.");
         }
+
+        // Perform transactions
+        acc1.deposit(200);
+        acc2.withdraw(150);
+
+        // Display updated details
+        acc1.display();
+        acc2.display();
+
+        // Sorting and displaying accounts
+        bank.sortAccountsByBalanceDescending();
+        bank.displayAllAccounts();
     }
 }
